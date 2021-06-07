@@ -48,6 +48,11 @@ body {
     justify-content: center;
 }
 
+#dropzone.dragover {
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 /* DOWNLOAD BUTTON */
 #download-button {
     width: 320px;
