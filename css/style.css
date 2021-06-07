@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Roboto&display=swap');
+/* 
+font-family: 'Baloo Tammudu 2', cursive;
+font-family: 'Roboto', sans-serif; 
+*/
+
+* {
+    font-family: 'Roboto', sans-serif; 
+}
+
+h1 {
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+/* LAYOUT */
+body {
+    display: flex;
+}
+
+.panel {
+    height: 100vh;
+    width: 50vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#left-panel {
+    background-color: rgba(255, 0, 0, 0.5); /* red green blue alpha */
+}
+
+#right-panel {
+    background-color: lightgoldenrodyellow;
+}
+
+/* DROPZONE */
+#dropzone {
+    width: 320px;
+    height: 80px;
+    border: 1px dashed white;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* DOWNLOAD BUTTON */
+#download-button {
+    width: 320px;
+    height: 40px;
+    margin-top: 5px;
+
+    background-color: white;
+    cursor: pointer;
+}
+
+#download-button:hover {
+    background-color: lightgrey;
+}
