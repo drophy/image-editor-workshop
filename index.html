@@ -17,10 +17,22 @@
         <button id="download-button">Download image</button>
     </div>
     <div id="right-panel" class="panel">
-        <h1>Stuff will go here</h1>
+        <label for="red-slider">Red</label>
+        <input id="red-slider" type="range" min="-100" max="100" value="0">
+        <label for="green-slider">Green</label>
+        <input id="green-slider" type="range" min="-100" max="100" value="0">
+        <label for="blue-slider">Blue</label>
+        <input id="blue-slider" type="range" min="-100" max="100" value="0">
+
+        <select id="preset-select">
+            <option value="none">None</option>
+            <option value="grayscale">Grayscale</option>
+            <option value="bw">Black & White</option>
+        </select>
     </div>
 
     <script src="js/p5.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

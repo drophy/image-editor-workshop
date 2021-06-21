@@ -35,6 +35,12 @@ body {
     background-color: lightgoldenrodyellow;
 }
 
+/* CANVAS */
+#canvas-container {
+    border: 1px solid white;
+    margin-bottom: 5px;
+}
+
 /* DROPZONE */
 #dropzone {
     width: 320px;
@@ -65,4 +71,9 @@ body {
 
 #download-button:hover {
     background-color: lightgrey;
+}
+
+/* PRESET SELECT */
+#preset-select {
+    margin-top: 5px;
 }
