@@ -17,6 +17,10 @@ body {
     display: flex;
 }
 
+.picking-color {
+    cursor: url(../assets/colorpicker.cur), pointer;
+}
+
 .panel {
     height: 100vh;
     width: 50vw;
@@ -76,4 +80,24 @@ body {
 /* PRESET SELECT */
 #preset-select {
     margin-top: 5px;
+}
+
+/* EXTRA SETTINGS */
+#extra-settings {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#extra-settings p, #extra-settings label {
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#color-box {
+    height: 20px;
+    width: 40px;
+    background-color: white;
+    border: 1px solid black;
 }

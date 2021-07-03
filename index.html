@@ -28,7 +28,15 @@
             <option value="none">None</option>
             <option value="grayscale">Grayscale</option>
             <option value="bw">Black & White</option>
+            <option value="sc">Single Color</option>
         </select>
+
+        <div id="extra-settings">
+            <p>Color</p>
+            <div id="color-box"></div>
+            <label for="tolerance-slider">Tolerance</label>
+            <input id="tolerance-slider" type="range" min="0" max="300" value="10">
+        </div>
     </div>
 
     <script src="js/p5.min.js"></script>

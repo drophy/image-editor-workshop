@@ -4,14 +4,20 @@ const width = 320;
 const height = 240;
 
 let uploadedImage = null;
+let isSelectingColor = false;
 
 const downloadButton = $('#download-button');
+const colorBox = $('#color-box');
 
 const redSlider = $('#red-slider');
 const greenSlider = $('#green-slider');
 const blueSlider = $('#blue-slider');
 
+const toleranceSlider = $('#tolerance-slider');
+
 const presetSelect = $('#preset-select');
+
+let sc_r = 0, sc_g = 0, sc_b = 0;
 
 function setup() {
     createCanvas(width, height).parent('canvas-container');
@@ -33,6 +39,7 @@ function setup() {
   
 function draw() {
     background(100, 0);
+    // console.log(mouseInCanvas());
     if(uploadedImage === null) return;
 
     let canvasRatio = width/height;
@@ -58,7 +65,18 @@ function draw() {
     // Filters
     loadPixels();
 
+    if(isSelectingColor && mouseInCanvas()) {
+        x = Math.round(mouseX);
+        y = Math.round(mouseY);
+        let index = (y*width + x) * 4;
+        sc_r = pixels[index+0];
+        sc_g = pixels[index+1];
+        sc_b = pixels[index+2];
+        colorBox.css('background-color', `rgb(${sc_r}, ${sc_g}, ${sc_b})`); 
+    }
+
     if(presetSelect.val() === 'grayscale') grayscale(pixels);
+    if(presetSelect.val() === 'sc') singleColor(pixels);
     else defaultFilter(pixels);
     
     updatePixels();
@@ -75,6 +93,7 @@ downloadButton.click(function() {
 
     // Apply filters
     if(presetSelect.val() === 'grayscale') grayscale(uploadedImage.pixels);
+    if(presetSelect.val() === 'sc') singleColor(uploadedImage.pixels);
     else defaultFilter(uploadedImage.pixels);
     
     uploadedImage.updatePixels();
@@ -90,7 +109,39 @@ downloadButton.click(function() {
     uploadedImage.updatePixels();
 });
 
+colorBox.click(function() {
+    isSelectingColor = true;
+    $('body').addClass('picking-color');
+});
+
+function mouseClicked() {
+    if(mouseInCanvas()) {
+        isSelectingColor = false;
+        $('body').removeClass('picking-color');
+    }
+}
+
+function mouseInCanvas() {
+    if(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) return true;
+    else return false;
+}
+
 ///// FILTERS /////
+function singleColor(pixels) {
+    for(let pixel = 0; pixel < pixels.length/4; pixel++) {
+        let i = pixel * 4;
+
+        let tolerance = Number(toleranceSlider.val());
+        let difference = Math.abs(pixels[i] - sc_r) + Math.abs(pixels[i+1] - sc_g) + Math.abs(pixels[i+2] - sc_b);
+        if(difference < tolerance) continue;
+
+        let average = (pixels[i] + pixels[i+1] + pixels[i+2]) / 3;
+        pixels[i+0] = average; // R
+        pixels[i+1] = average; // G
+        pixels[i+2] = average; // B
+    }
+}
+
 function grayscale(pixels) {
     for(let pixel = 0; pixel < pixels.length/4; pixel++) {
         let i = pixel * 4;
